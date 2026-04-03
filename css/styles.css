@@ -528,9 +528,10 @@ ul {
     align-items: center;
 }
 
-.metric-item > div:first-child {
+.metric-item .metric-row {
     display: flex;
     align-items: baseline;
+    justify-content: center;
 }
 
 .metric-number {
