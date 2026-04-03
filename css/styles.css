@@ -1139,54 +1139,97 @@ ul {
     line-height: 1.6;
 }
 
-/* ========== TESTIMONIALS ========== */
+/* ========== TESTIMONIALS CAROUSEL ========== */
 .testimonials {
     padding: var(--section-padding);
     background: var(--bg-primary);
 }
 
-.testimonial-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
+/* Carousel */
+.testimonial-carousel {
+    max-width: 700px;
+    margin: 0 auto;
+    position: relative;
 }
 
+.carousel-track {
+    position: relative;
+    min-height: 220px;
+}
+
+.carousel-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transform: translateX(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    pointer-events: none;
+}
+
+.carousel-slide.active {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
+    position: relative;
+}
+
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 32px;
+}
+
+.carousel-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--border-subtle);
+    border: none;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    padding: 0;
+}
+
+.carousel-dot.active {
+    background: var(--accent-cyan);
+    box-shadow: 0 0 8px rgba(46, 125, 50, 0.3);
+}
+
+.carousel-dot:hover {
+    background: var(--text-muted);
+}
+
+/* Card inside carousel */
 .testimonial-card {
     background: var(--bg-card);
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-lg);
-    padding: 36px;
-    transition: all var(--transition-smooth);
-    display: flex;
-    flex-direction: column;
-}
-
-.testimonial-card:hover {
-    border-color: var(--border-accent);
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-glow);
-}
-
-.testimonial-stars {
-    display: flex;
-    gap: 4px;
-    color: #fbbf24;
-    margin-bottom: 20px;
+    padding: 44px;
+    text-align: center;
 }
 
 .testimonial-card blockquote {
-    font-size: 0.95rem;
+    font-size: 1.1rem;
     color: var(--text-secondary);
-    line-height: 1.7;
+    line-height: 1.8;
     font-style: italic;
-    flex: 1;
     margin-bottom: 24px;
+}
+
+.testimonial-result {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--accent-cyan);
+    letter-spacing: 0.02em;
 }
 
 .testimonial-author {
     display: flex;
     align-items: center;
     gap: 14px;
+    justify-content: center;
     border-top: 1px solid var(--border-subtle);
     padding-top: 20px;
 }
@@ -1209,11 +1252,13 @@ ul {
     display: block;
     font-size: 0.9rem;
     color: var(--text-primary);
+    text-align: left;
 }
 
 .testimonial-author span {
     font-size: 0.8rem;
     color: var(--text-muted);
+    text-align: left;
 }
 
 /* ========== CTA BANNER ========== */

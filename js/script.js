@@ -159,6 +159,56 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // ─── Testimonial Carousel ───
+    const carouselTrack = document.getElementById('carouselTrack');
+    const carouselDots = document.getElementById('carouselDots');
+    if (carouselTrack && carouselDots) {
+        const slides = carouselTrack.querySelectorAll('.carousel-slide');
+        let currentSlide = 0;
+        let autoplayInterval;
+
+        // Create dots
+        slides.forEach((_, i) => {
+            const dot = document.createElement('button');
+            dot.className = `carousel-dot${i === 0 ? ' active' : ''}`;
+            dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+            dot.addEventListener('click', () => goToSlide(i));
+            carouselDots.appendChild(dot);
+        });
+
+        const dots = carouselDots.querySelectorAll('.carousel-dot');
+
+        function goToSlide(index) {
+            slides[currentSlide].classList.remove('active');
+            dots[currentSlide].classList.remove('active');
+            currentSlide = index;
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+        }
+
+        function nextSlide() {
+            goToSlide((currentSlide + 1) % slides.length);
+        }
+
+        function startAutoplay() {
+            autoplayInterval = setInterval(nextSlide, 5000);
+        }
+
+        function resetAutoplay() {
+            clearInterval(autoplayInterval);
+            startAutoplay();
+        }
+
+        // Pause on hover
+        carouselTrack.addEventListener('mouseenter', () => clearInterval(autoplayInterval));
+        carouselTrack.addEventListener('mouseleave', startAutoplay);
+
+        // Reset timer on dot click
+        carouselDots.addEventListener('click', resetAutoplay);
+
+        startAutoplay();
+    }
+
     // ─── Form Handling ───
     const form = document.getElementById('contactForm');
     if (form) {
