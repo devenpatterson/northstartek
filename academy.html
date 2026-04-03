@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reeves Academy | NorthStar Technologies — AI Training for Every Role</title>
+    <meta name="description" content="Reeves Academy — 24 hands-on specialty tracks covering every technical and business role. Master AI-assisted workflows. Free Levels 0-6 included.">
+    <meta name="keywords" content="AI training, Reeves Academy, NorthStar Technologies, AI-assisted workflows, developer training, AI certification">
+    <meta property="og:title" content="Reeves Academy | AI Training for Every Role">
+    <meta property="og:description" content="24 hands-on specialty tracks. Master AI-assisted workflows in your specific role. Free training built in.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.northstar-tek.com/academy.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" type="image/svg+xml" href="images/logo.svg">
+    <style>
+        /* ── Academy-specific overrides ── */
+        .academy-hero {
+            padding: 160px 0 80px;
+            text-align: center;
+            background: var(--bg-primary);
+            position: relative;
+            overflow: hidden;
+        }
+        .academy-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(46, 125, 50, 0.12) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .academy-hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        .academy-hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.4rem, 5vw, 3.8rem);
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+        .academy-hero .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 28px;
+        }
+        .free-note {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(46, 125, 50, 0.1);
+            border: 1px solid rgba(76, 175, 80, 0.25);
+            border-radius: 100px;
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            color: var(--accent-teal);
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 500;
+        }
+        .free-note svg {
+            flex-shrink: 0;
+            color: var(--accent-cyan);
+        }
+
+        /* ── Track tables ── */
+        .tracks-section {
+            padding: var(--section-padding);
+            background: var(--bg-secondary);
+        }
+        .tracks-section .container {
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: var(--container-padding);
+        }
+        .track-category {
+            margin-bottom: 64px;
+        }
+        .track-category:last-child {
+            margin-bottom: 0;
+        }
+        .track-category-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .track-count-badge {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-subtle);
+            border-radius: 100px;
+            padding: 4px 12px;
+            letter-spacing: 0.05em;
+        }
+        .track-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+        }
+        .track-table thead tr {
+            background: rgba(46, 125, 50, 0.08);
+            border-bottom: 1px solid rgba(76, 175, 80, 0.12);
+        }
+        .track-table thead th {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            padding: 14px 20px;
+            text-align: left;
+        }
+        .track-table thead th:last-child {
+            text-align: right;
+        }
+        .track-table tbody tr {
+            border-bottom: 1px solid var(--border-subtle);
+            transition: background var(--transition-fast);
+        }
+        .track-table tbody tr:last-child {
+            border-bottom: none;
+        }
+        .track-table tbody tr:hover {
+            background: rgba(76, 175, 80, 0.04);
+        }
+        .track-table tbody td {
+            padding: 16px 20px;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            vertical-align: middle;
+        }
+        .track-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            color: var(--text-primary) !important;
+            white-space: nowrap;
+        }
+        .track-topics {
+            font-size: 0.85rem !important;
+            color: var(--text-muted) !important;
+            line-height: 1.5;
+        }
+        .track-levels {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.85rem !important;
+            color: var(--accent-teal) !important;
+            white-space: nowrap;
+            font-weight: 500;
+        }
+        .track-price {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 1rem !important;
+            color: var(--text-primary) !important;
+            white-space: nowrap;
+        }
+        .track-action {
+            text-align: right;
+        }
+        .track-action .btn {
+            white-space: nowrap;
+        }
+
+        /* ── Bundle card ── */
+        .bundle-section {
+            padding: 80px 0;
+            background: var(--bg-primary);
+        }
+        .bundle-section .container {
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: var(--container-padding);
+        }
+        .bundle-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(76, 175, 80, 0.25);
+            border-radius: var(--radius-xl);
+            padding: 56px 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 48px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-glow);
+        }
+        .bundle-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--gradient-aurora-subtle);
+            pointer-events: none;
+        }
+        .bundle-card-content {
+            position: relative;
+            z-index: 1;
+        }
+        .bundle-card-content .section-label {
+            margin-bottom: 16px;
+        }
+        .bundle-card-content h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(1.8rem, 3vw, 2.6rem);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+        .bundle-card-content p {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        .bundle-card-action {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            flex-shrink: 0;
+        }
+        .bundle-price {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+        .bundle-savings {
+            font-size: 0.85rem;
+            color: var(--accent-teal);
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        /* ── What's In Each Track ── */
+        .track-details-section {
+            padding: var(--section-padding);
+            background: var(--bg-secondary);
+        }
+        .track-details-section .container {
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: var(--container-padding);
+        }
+        .track-detail-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
+            margin-top: 0;
+        }
+        .track-detail-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: 32px 28px;
+            transition: all var(--transition-smooth);
+        }
+        .track-detail-card:hover {
+            border-color: var(--border-accent);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-glow);
+        }
+        .track-detail-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(46, 125, 50, 0.1);
+            border: 1px solid rgba(76, 175, 80, 0.15);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: var(--accent-cyan);
+        }
+        .track-detail-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+        }
+        .track-detail-card p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 900px) {
+            .bundle-card {
+                flex-direction: column;
+                text-align: center;
+                padding: 40px 32px;
+            }
+            .bundle-card-action {
+                width: 100%;
+            }
+        }
+        @media (max-width: 768px) {
+            .track-table thead th:nth-child(2),
+            .track-table tbody td:nth-child(2) {
+                display: none;
+            }
+            .track-table thead th:nth-child(3),
+            .track-table tbody td:nth-child(3) {
+                display: none;
+            }
+        }
+        @media (max-width: 520px) {
+            .track-table {
+                font-size: 0.85rem;
+            }
+            .track-table thead th,
+            .track-table tbody td {
+                padding: 12px 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========== NAVIGATION ========== -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <img src="images/logo-full.svg" alt="NorthStar Technologies" class="nav-logo-full">
+                <img src="images/logo.svg" alt="NorthStar Technologies" class="nav-logo-icon">
+            </a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="index.html#ai" class="active">AI</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#process">Process</a></li>
+                <li><a href="index.html#industries">Industries</a></li>
+                <li><a href="index.html#testimonials">Clients</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+            <div class="nav-cta">
+                <a href="tel:+12108645469" class="nav-phone">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+                    <span>(210) 864-5469</span>
+                </a>
+                <a href="index.html#contact" class="btn btn-primary btn-sm">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ========== HERO ========== -->
+    <section class="academy-hero">
+        <div class="academy-hero-content">
+            <span class="section-label">Reeves Academy</span>
+            <h1>24 Hands-On <span class="glow">Specialty Tracks</span></h1>
+            <p class="subtitle">Master AI-assisted workflows in your specific role — from developer to executive, every track is built for real work, not theory.</p>
+            <div class="free-note">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                Free training built in. Levels 0–6 cover the fundamentals — no purchase needed.
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== TRACK TABLES ========== -->
+    <section class="tracks-section">
+        <div class="container">
+
+            <!-- Technical Tracks -->
+            <div class="track-category">
+                <div class="track-category-header">
+                    <span class="section-label" style="margin-bottom:0">Technical</span>
+                    <span class="track-count-badge">11 Tracks</span>
+                </div>
+                <table class="track-table">
+                    <thead>
+                        <tr>
+                            <th>Track</th>
+                            <th>Topics Covered</th>
+                            <th>Levels</th>
+                            <th>Price</th>
+                            <th style="text-align:right">Enroll</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="track-name">Developer</td>
+                            <td class="track-topics">Custom skills, code review, testing, refactoring, debugging, CI/CD, security, API design</td>
+                            <td class="track-levels">7–18</td>
+                            <td class="track-price">$69</td>
+                            <td class="track-action"><a href="https://buy.polar.sh/polar_cl_IIhZGQ6zCvcDV30FpedpHJKqjtaWVsEzTYL1D0r8D5o" class="btn btn-primary btn-sm" target="_blank" rel="noopener">Get</a></td>
+                        </tr>
+                        <tr>
+                            <td class="track-name">Backend Development</td>
+                            <td class="track-topics">API design, microservices, auth, caching, message queues</td>
+                            <td class="track-levels">7–15</td>
+                            <td class="track-price">$69</td>
+                            <td class="track-action"><a href="https://buy.polar.sh/polar_cl_R9WQSjFi98uL81zGTBBvS2aFiXUwcoEtlMsIP41KEPN" class="btn btn-primary btn-sm" target="_blank" rel="noopener">Get</a></td>
+                        </tr>
+                        <tr>
+                            <td class="track-name">Frontend Development</td>
+                            <td class="track-topics">Components, accessibility, performance, design systems</td>
+                            <td class="track-levels">7–15</td>
+                            <td class="track-price">$69</td>
+                            <td class="track-action"><a href="https://buy.polar.sh/polar_cl_eo1A1groE24WDcEMcxzDSaPkxsTKL9YL88a651JkZZr" class="btn btn-primary btn-sm" target="_blank" rel="noopener">Get</a></td>
+                        </tr>
+                        <tr>
+                            <td class="track-name">DevOps/SRE</td>
+                            <td class="track-topics">IaC, CI/CD, monitoring, incident response, cost optimization</td>
+                            <td class="track-levels">7–16</td>
+                            <td class="track-price">$69</td>
+                            <td class="track-action"><a href="https://buy.polar.sh/polar_cl_6Pgq4wpGOpJ2uqf9MfzX0JwgWSW7KS91P9Yll0GYm0v" class="btn btn-primary btn-sm" target="_blank" rel="noopener">Get</a></td>
+                        </tr>
+                        <tr>
+                            <td class="track-name">Data Engineering</td>
+                            <td class="track-topics">SQL, ETL, pipelines, data quality, streaming, orchestration</td>
+                            <td class="track-levels">7–16</td>
+                            <td class="track-price">$69</td>
+                            <td class="track-action"><a href="https://buy.polar.sh/polar_cl_c6ewl01hHCuh4qjPrE9kPLQZFQGAvCQMR4IFH0qcYQH" class="btn btn-primary btn-sm" target="_blank" rel="noopener">Get</a></td>
+                        </tr>
+                        <tr>
+                            <td class="track-name">Cloud Architecture</td>
+                            <td class="track-topics">ADRs, well-architected, multi-cloud, FinOps, migration</td>
+                            <td class="track-levels">7–16</td>
+                            <td class="track-price">$79</td>
+                            <td class="track-action"><a href="https://buy.polar.sh/polar_cl_K1DkdcajNXVuztqQXdWAjRiUxHQJPwa7jpIu32IqaJL" class="btn btn-primary btn-sm" target="_blank" rel="noopener">Get</a></td>
+                        </tr>
+                        <tr>
+                            <td class="track-name">Security Engineering</td>
+                            <td class="track-topics">Threat modeling, OWASP, supply chain, compliance, pen testing</td>
+                            <td class="track-levels">7–16</td>
+                            <td class="track-price">$79</td>
+                            <td class="track-action"><a href="https://buy.polar.sh/polar_cl_vs517Q31M06ZBEfOPRsHphsDSVuJs9OzL1xzh3bdNpn" class="btn btn-primary btn-sm" target="_blank" rel="noopener">Get</a></td>
+                        </tr>
+                        <tr>
+                            <td class="track-name">Network Engineering</td>
+                            <td class="track-topics">Asking good questions, steering, screenshots, troubleshooting</td>
+                            <td class="track-levels">7–14</td>
+                            <td class="track-price">$59</td>
+                            <td class="track-action"><a href="https://buy.polar.sh/polar_cl_0w48Hb7J1r8t8ZK99XSL3ODVUe5VKZundRBxf18cwv0" class="btn btn-primary btn-sm" target="_blank" rel="noopener">Get</a></td>
+                        </tr>
+                        <tr>
+                            <td class="track-name">Network Automation</td>
+                            <td class="track-topics">Automation skills, parallel ops, NetDevOps, security review</td>
+                            <td class="track-levels">7–13</td>
+                            <td class="track-price">$59</td>
+                            <td class="track-action"><a href="https://buy.polar.sh/polar_cl_5TNpLJ9t0bA09QQFiXYcRiLWPI05StFDKeqU11eGMvM" class="btn btn-primary btn-sm" target="_blank" rel="noopener">Get</a></td>
+                        </tr>
+                        <tr>
+                            <td class="track-name">Mobile Development</td>
+                            <td class="track-topics">Components, API integration, state, platform APIs, app store</td>
+                            <td class="track-levels">7–15</td>
+                            <td class="track-price">$59</td>
+                            <td class="track-action"><a href="https://buy.polar.sh/polar_cl_SqVVAXD9JjJXKl6aTAwC9W6pF0YbfwYqWlBnu47cn7M" class="btn btn-primary btn-sm" target="_blank" rel="noopener">Get</a></td>
+                        </tr>
+                        <tr>
+                            <td class="track-name">DBA</td>
+                            <td class="track-topics">Query optimization, schema, backup/recovery, performance</td>
+                            <td class="track-levels">7–14</td>
+                            <td class="track-price">$59</td>
+                            <td class="track-action"><a href="https://buy.polar.sh/polar_cl_7IBgSfXaxKNVzAtOkLnIDJtsOArWNliVxFSNx4AE3VR" class="btn btn-primary btn-sm" target="_blank" rel="noopener">Get</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Specialized Tracks -->
+            <div class="track-category">
+                <div class="track-category-header">
+                    <span class="section-label" style="margin-bottom:0">Specialized</span>
+                    <span class="track-count-badge">5 Tracks</span>
+                </div>
+                <table class="track-table">
+                    <thead>
+                        <tr>
+                            <th>Track</th>
+                            <th>Topics Covered</th>
+                            <th>Levels</th>
+                            <th>Price</th>
+                            <th style="text-align:right">Enroll</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="track-name">AI Agent Building</td>
+                            <td class="track-topics">Personas, multi-agent, context engineering, guardrails, production</td>
+                            <td class="track-levels">7–16</td>
+                            <td class="track-price">$79</td>
+                            <td class="track-action"><a href="https://buy.polar.sh/polar_cl_cpue82D34sE7MLI7Fh2i76Wl5NAegAD3pcBfQ4Bykkp" class="btn btn-primary btn-sm" target="_blank" rel="noopener">Get</a></td>
+                        </tr>
+                        <tr>
+                            <td class="track-name">ML/AI Engineering</td>
+                            <td class="track-topics">Preprocessing, experiments, eval, pipelines, serving, monitoring</td>
+                            <td class="track-levels">7–15</td>
+                            <td class="track-price">$79</td>
+                            <td class="track-action"><a href="https://buy.polar.sh/polar_cl_w0GRYzNBnjs8Aa650HMyG3ziGnyN44KOuAITq4KZmA0" class="btn btn-primary btn-sm" target="_blank" rel="noopener">Get</a></td>
+                        </tr>
+                        <tr>
+                            <td class="track-name">QA/Testing</td>
+                            <td class="track-topics">Unit, integration, e2e, test data, coverage, performance</td>
+                            <td class="track-levels">7–15</td>
+                            <td class="track-price">$59</td>
+                            <td class="track-action"><a href="https://buy.polar.sh/polar_cl_lA4RqeLkRzajThe1nsUJAxTRvkFJxyOZnfYx13IEFDB" class="btn btn-primary btn-sm" target="_blank" rel="noopener">Get</a></td>
+                        </tr>
+                        <tr>
+                            <td class="track-name">Technical Writing</td>
+                            <td class="track-topics">API docs, user guides, code examples, style, content audits</td>
+                            <td class="track-levels">7–15</td>
+                            <td class="track-price">$49</td>
+                            <td class="track-action"><a href="https://buy.polar.sh/polar_cl_yr32Csr0SA5Zb6WGokT5odJgbQ6ckHfrx2ina2vV3ty" class="btn btn-primary btn-sm" target="_blank" rel="noopener">Get</a></td>
+                        </tr>
+                        <tr>
+                            <td class="track-name">Prompt Engineering</td>
+                            <td class="track-topics">Advanced prompting, context engineering, system prompts, eval</td>
+                            <td class="track-levels">7–14</td>
+                            <td class="track-price">$49</td>
+                            <td class="track-action"><a href="https://buy.polar.sh/polar_cl_v0lxZrcKyd3AtvnivcXAmGiaQCcjbRn1ehqFY37Hq1x" class="btn btn-primary btn-sm" target="_blank" rel="noopener">Get</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Leadership & Business Tracks -->
+            <div class="track-category">
+                <div class="track-category-header">
+                    <span class="section-label" style="margin-bottom:0">Leadership &amp; Business</span>
+                    <span class="track-count-badge">8 Tracks</span>
+                </div>
+                <table class="track-table">
+                    <thead>
+                        <tr>
+                            <th>Track</th>
+                            <th>Topics Covered</th>
+                            <th>Levels</th>
+                            <th>Price</th>
+                            <th style="text-align:right">Enroll</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="track-name">Project Management</td>
+                            <td class="track-topics">User stories, sprint planning, status, risk, retros, cross-team</td>
+                            <td class="track-levels">7–16</td>
+                            <td class="track-price">$69</td>
+                            <td class="track-action"><a href="https://buy.polar.sh/polar_cl_8CVBfKSImJyqxNen4ehNZSZ51Kk2bIQZ5oMT13rzJ3J" class="btn btn-primary btn-sm" target="_blank" rel="noopener">Get</a></td>
+                        </tr>
+                        <tr>
+                            <td class="track-name">Technical Leadership</td>
+                            <td class="track-topics">Code review standards, ADRs, onboarding, tech debt, metrics</td>
+                            <td class="track-levels">7–14</td>
+                            <td class="track-price">$69</td>
+                            <td class="track-action"><a href="https://buy.polar.sh/polar_cl_X4CZm89U3p58pyghDmcPFh5TbCeGwi7X2rHcq1Vyyor" class="btn btn-primary btn-sm" target="_blank" rel="noopener">Get</a></td>
+                        </tr>
+                        <tr>
+                            <td class="track-name">Solutions Architecture</td>
+                            <td class="track-topics">Discovery, proposals, RFPs, demos, integration, cost modeling</td>
+                            <td class="track-levels">7–15</td>
+                            <td class="track-price">$69</td>
+                            <td class="track-action"><a href="https://buy.polar.sh/polar_cl_kkJIthyAgeobpc4I0VwLfsfkIPOQ0QqjTQ01B2BsgPY" class="btn btn-primary btn-sm" target="_blank" rel="noopener">Get</a></td>
+                        </tr>
+                        <tr>
+                            <td class="track-name">GRC/Compliance</td>
+                            <td class="track-topics">Policy, control mapping, evidence, risk, audit, reporting</td>
+                            <td class="track-levels">7–15</td>
+                            <td class="track-price">$69</td>
+                            <td class="track-action"><a href="https://buy.polar.sh/polar_cl_6L2sD8ptEYHL3XAZUsvywQJrBpAbaaRDH1TRj49xSyw" class="btn btn-primary btn-sm" target="_blank" rel="noopener">Get</a></td>
+                        </tr>
+                        <tr>
+                            <td class="track-name">Business Analysis</td>
+                            <td class="track-topics">Requirements, user stories, process modeling, data analysis</td>
+                            <td class="track-levels">7–15</td>
+                            <td class="track-price">$59</td>
+                            <td class="track-action"><a href="https://buy.polar.sh/polar_cl_dHLjNrffH9GUC6Tp6lE9uql3llgYARJIp8uh21mk6ps" class="btn btn-primary btn-sm" target="_blank" rel="noopener">Get</a></td>
+                        </tr>
+                        <tr>
+                            <td class="track-name">Product Design</td>
+                            <td class="track-topics">Design tokens, component specs, a11y, prototyping, research</td>
+                            <td class="track-levels">7–14</td>
+                            <td class="track-price">$59</td>
+                            <td class="track-action"><a href="https://buy.polar.sh/polar_cl_CrpcOEPqkXq88s1WcR9rdBLMHD7RabXTbMrGZ0DWcYX" class="btn btn-primary btn-sm" target="_blank" rel="noopener">Get</a></td>
+                        </tr>
+                        <tr>
+                            <td class="track-name">Sales Engineering</td>
+                            <td class="track-topics">Discovery, demos, proposals, objections, competitive analysis</td>
+                            <td class="track-levels">7–14</td>
+                            <td class="track-price">$59</td>
+                            <td class="track-action"><a href="https://buy.polar.sh/polar_cl_fAA4cYeDO8uIW58JMsqU7GrBSWuvnT009v6PU0zWkff" class="btn btn-primary btn-sm" target="_blank" rel="noopener">Get</a></td>
+                        </tr>
+                        <tr>
+                            <td class="track-name">IT Operations</td>
+                            <td class="track-topics">Shell scripting, config management, monitoring, runbooks</td>
+                            <td class="track-levels">7–14</td>
+                            <td class="track-price">$49</td>
+                            <td class="track-action"><a href="https://buy.polar.sh/polar_cl_tUTbnrzXarjdwJNCRQmumCu4qx4Vsk83zWIkm2WYKDw" class="btn btn-primary btn-sm" target="_blank" rel="noopener">Get</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ========== BUNDLE ========== -->
+    <section class="bundle-section">
+        <div class="container">
+            <div class="bundle-card">
+                <div class="bundle-card-content">
+                    <span class="section-label">Best Value</span>
+                    <h2>All-Access <span class="glow">Lifetime Pass</span></h2>
+                    <p>Every track. Every level. Every future track we add. One payment, no subscription — yours to keep and share with your team.</p>
+                </div>
+                <div class="bundle-card-action">
+                    <div class="bundle-price">$499</div>
+                    <div class="bundle-savings">Save over $1,000</div>
+                    <a href="https://buy.polar.sh/polar_cl_LXdoqmIcHONMbKehgRjzq168lTog1vibi0tLJ0kUsqM" class="btn btn-primary btn-lg" target="_blank" rel="noopener">
+                        Get All-Access
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== WHAT'S IN EACH TRACK ========== -->
+    <section class="track-details-section">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-label">Every Track Includes</span>
+                <h2 class="section-title">What's In <span class="glow">Each Track</span></h2>
+                <p class="section-description">Every specialty track is built the same way — structured levels, real work, and a credential to show for it.</p>
+            </div>
+            <div class="track-detail-grid">
+                <div class="track-detail-card reveal">
+                    <div class="track-detail-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+                    </div>
+                    <h3>Hands-On Labs</h3>
+                    <p>Every level is built around real tasks — not quizzes, not lectures. You work alongside AI on problems from your actual role.</p>
+                </div>
+                <div class="track-detail-card reveal">
+                    <div class="track-detail-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                    </div>
+                    <h3>Boss Battles</h3>
+                    <p>Capstone challenges at key checkpoints. Prove you can handle a complex, multi-step task without handholding before you level up.</p>
+                </div>
+                <div class="track-detail-card reveal">
+                    <div class="track-detail-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M12 2a4 4 0 014 4c0 2-2 3-2 3h-4s-2-1-2-3a4 4 0 014-4z"/><path d="M9 9h6v2a3 3 0 01-6 0V9z"/><path d="M8 14h8"/><path d="M9 17h6"/><path d="M10 20h4"/></svg>
+                    </div>
+                    <h3>Meet Reeves Bridges</h3>
+                    <p>Your persistent AI guide throughout the track. Reeves adapts to your role, remembers your progress, and escalates challenges as you advance.</p>
+                </div>
+                <div class="track-detail-card reveal">
+                    <div class="track-detail-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"/></svg>
+                    </div>
+                    <h3>Graduation + Certificate</h3>
+                    <p>Complete your track and earn a verified completion certificate. Shareable on LinkedIn and recognized by NorthStar Technologies clients.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="footer-logo">
+                        <img src="images/logo-full.svg" alt="NorthStar Technologies">
+                    </a>
+                    <p>Enterprise technology solutions for the modern business. Based in San Antonio, serving Texas and beyond.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="index.html#services">Cloud Architecture</a></li>
+                        <li><a href="index.html#services">Cybersecurity</a></li>
+                        <li><a href="index.html#services">Managed Services</a></li>
+                        <li><a href="index.html#services">DevOps</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="index.html#about">About Us</a></li>
+                        <li><a href="index.html#process">Our Process</a></li>
+                        <li><a href="index.html#industries">Industries</a></li>
+                        <li><a href="index.html#testimonials">Client Stories</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a href="index.html#contact">Contact</a></li>
+                        <li><a href="tel:+12108645469">(210) 864-5469</a></li>
+                        <li><a href="mailto:info@northstar-tek.com">info@northstar-tek.com</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 NorthStar Technologies. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
