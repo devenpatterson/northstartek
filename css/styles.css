@@ -246,14 +246,14 @@ ul {
 }
 
 .nav-logo-full {
-    height: 32px;
+    height: 48px;
     width: auto;
 }
 
 .nav-logo-icon {
     display: none;
-    width: 36px;
-    height: 36px;
+    width: 44px;
+    height: 44px;
 }
 
 .nav-links {
@@ -1224,7 +1224,7 @@ ul {
 }
 
 .footer-logo img {
-    height: 32px;
+    height: 44px;
     width: auto;
 }
 
