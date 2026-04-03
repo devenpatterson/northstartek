@@ -1145,32 +1145,23 @@ ul {
     background: var(--bg-primary);
 }
 
-/* Carousel */
+/* Carousel — 2 visible at a time */
 .testimonial-carousel {
-    max-width: 700px;
+    max-width: 960px;
     margin: 0 auto;
     position: relative;
+    overflow: hidden;
 }
 
 .carousel-track {
-    position: relative;
-    min-height: 220px;
+    display: flex;
+    gap: 24px;
+    transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .carousel-slide {
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    transform: translateX(30px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-    pointer-events: none;
-}
-
-.carousel-slide.active {
-    opacity: 1;
-    transform: translateX(0);
-    pointer-events: auto;
-    position: relative;
+    min-width: calc(50% - 12px);
+    flex-shrink: 0;
 }
 
 .carousel-dots {
@@ -1578,8 +1569,8 @@ ul {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    .testimonial-grid {
-        grid-template-columns: 1fr;
+    .carousel-slide {
+        min-width: 100%;
     }
 }
 

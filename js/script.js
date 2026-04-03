@@ -159,39 +159,57 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // ─── Testimonial Carousel ───
+    // ─── Testimonial Carousel (2 visible, slide 1 at a time) ───
     const carouselTrack = document.getElementById('carouselTrack');
     const carouselDots = document.getElementById('carouselDots');
     if (carouselTrack && carouselDots) {
         const slides = carouselTrack.querySelectorAll('.carousel-slide');
-        let currentSlide = 0;
+        const totalSlides = slides.length;
+        let currentIndex = 0;
         let autoplayInterval;
 
-        // Create dots
-        slides.forEach((_, i) => {
-            const dot = document.createElement('button');
-            dot.className = `carousel-dot${i === 0 ? ' active' : ''}`;
-            dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
-            dot.addEventListener('click', () => goToSlide(i));
-            carouselDots.appendChild(dot);
-        });
-
-        const dots = carouselDots.querySelectorAll('.carousel-dot');
-
-        function goToSlide(index) {
-            slides[currentSlide].classList.remove('active');
-            dots[currentSlide].classList.remove('active');
-            currentSlide = index;
-            slides[currentSlide].classList.add('active');
-            dots[currentSlide].classList.add('active');
+        // How many visible at once (2 on desktop, 1 on mobile)
+        function getVisible() {
+            return window.innerWidth <= 768 ? 1 : 2;
         }
 
-        function nextSlide() {
-            goToSlide((currentSlide + 1) % slides.length);
+        // Total "positions" we can slide to
+        function maxIndex() {
+            return Math.max(0, totalSlides - getVisible());
+        }
+
+        // Create dots (one per position)
+        function buildDots() {
+            carouselDots.innerHTML = '';
+            const count = maxIndex() + 1;
+            for (let i = 0; i < count; i++) {
+                const dot = document.createElement('button');
+                dot.className = `carousel-dot${i === currentIndex ? ' active' : ''}`;
+                dot.setAttribute('aria-label', `Go to position ${i + 1}`);
+                dot.addEventListener('click', () => { goTo(i); resetAutoplay(); });
+                carouselDots.appendChild(dot);
+            }
+        }
+
+        function goTo(index) {
+            currentIndex = Math.min(index, maxIndex());
+            const visible = getVisible();
+            const gap = 24;
+            const slideWidth = carouselTrack.parentElement.offsetWidth;
+            const singleWidth = (slideWidth - gap * (visible - 1)) / visible + gap;
+            carouselTrack.style.transform = `translateX(-${currentIndex * singleWidth}px)`;
+
+            // Update dots
+            const dots = carouselDots.querySelectorAll('.carousel-dot');
+            dots.forEach((d, i) => d.classList.toggle('active', i === currentIndex));
+        }
+
+        function next() {
+            goTo(currentIndex >= maxIndex() ? 0 : currentIndex + 1);
         }
 
         function startAutoplay() {
-            autoplayInterval = setInterval(nextSlide, 5000);
+            autoplayInterval = setInterval(next, 8000);
         }
 
         function resetAutoplay() {
@@ -203,9 +221,11 @@ document.addEventListener('DOMContentLoaded', () => {
         carouselTrack.addEventListener('mouseenter', () => clearInterval(autoplayInterval));
         carouselTrack.addEventListener('mouseleave', startAutoplay);
 
-        // Reset timer on dot click
-        carouselDots.addEventListener('click', resetAutoplay);
+        // Rebuild on resize
+        window.addEventListener('resize', () => { buildDots(); goTo(Math.min(currentIndex, maxIndex())); });
 
+        buildDots();
+        goTo(0);
         startAutoplay();
     }
 
