@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 50" width="600" height="100">
+  <g transform="translate(22, 25)">
+    <circle cx="0" cy="0" r="18" fill="none" stroke="#2E7D32" stroke-width="1.8"/>
+    <polygon points="0,-14 4,-4 -4,-4" fill="#2E7D32"/>
+    <polygon points="0,14 4,4 -4,4" fill="none" stroke="#2E7D32" stroke-width="1"/>
+    <circle cx="0" cy="0" r="2" fill="#2E7D32"/>
+  </g>
+  <text x="48" y="29" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700" letter-spacing="2" fill="#eaeaef">NORTH<tspan fill="#2E7D32">STAR</tspan></text>
+  <text x="48" y="44" font-family="Arial, Helvetica, sans-serif" font-size="9.5" font-weight="400" letter-spacing="4.5" fill="#666666">TECHNOLOGIES</text>
+</svg>

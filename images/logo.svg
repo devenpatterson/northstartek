@@ -1,25 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
-  <defs>
-    <linearGradient id="star-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#00f0ff;stop-opacity:1" />
-      <stop offset="50%" style="stop-color:#0ea5e9;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:1" />
-    </linearGradient>
-    <filter id="glow">
-      <feGaussianBlur stdDeviation="1.5" result="blur"/>
-      <feMerge>
-        <feMergeNode in="blur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
-  </defs>
-  <!-- North Star / compass star shape -->
-  <g filter="url(#glow)">
-    <!-- Main 4-point star -->
-    <polygon points="24,2 27,18 42,24 27,30 24,46 21,30 6,24 21,18" fill="url(#star-grad)" opacity="0.9"/>
-    <!-- Inner highlight -->
-    <polygon points="24,10 25.5,20 34,24 25.5,28 24,38 22.5,28 14,24 22.5,20" fill="#ffffff" opacity="0.3"/>
-    <!-- Center dot -->
-    <circle cx="24" cy="24" r="2.5" fill="#ffffff" opacity="0.9"/>
+  <g transform="translate(24, 24)">
+    <circle cx="0" cy="0" r="20" fill="none" stroke="#2E7D32" stroke-width="2"/>
+    <polygon points="0,-16 5,-5 -5,-5" fill="#2E7D32"/>
+    <polygon points="0,16 5,5 -5,5" fill="none" stroke="#2E7D32" stroke-width="1.2"/>
+    <polygon points="-16,0 -5,-5 -5,5" fill="none" stroke="#2E7D32" stroke-width="1.2"/>
+    <polygon points="16,0 5,-5 5,5" fill="none" stroke="#2E7D32" stroke-width="1.2"/>
+    <circle cx="0" cy="0" r="2.5" fill="#2E7D32"/>
   </g>
 </svg>
